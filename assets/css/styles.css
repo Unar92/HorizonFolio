@@ -1,0 +1,519 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            overflow: hidden;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00bcd4;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0097a7;
+        }
+
+        .container {
+            display: flex;
+            width: max-content;
+            height: 100vh;
+            background: #f5f5f5;
+        }
+
+        .section {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 60px 40px;
+            flex-shrink: 0;
+        }
+
+        .section:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Large devices - show 3 sections */
+        @media (min-width: 1200px) {
+            .section {
+                width: 33.33vw;
+                min-width: 400px;
+            }
+        }
+
+        /* Medium devices - show 2 sections */
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .section {
+                width: 50vw;
+                min-width: 400px;
+            }
+        }
+
+        /* Small devices - show 1 section */
+        @media (max-width: 767px) {
+            .section {
+                width: 100vw;
+                min-width: 100vw;
+            }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00bcd4;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Section 1 - Who!Cares */
+        .section-1 {
+            background: linear-gradient(135deg, #00bcd4, #0097a7);
+            color: white;
+        }
+
+        .section-number {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            font-size: 48px;
+            font-weight: bold;
+            opacity: 0.7;
+        }
+
+        .main-title {
+            font-size: 72px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .circle-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 40px 0;
+        }
+
+        .main-circle {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #ff5722, #e91e63);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .profile-pic {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            position: absolute;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .profile-pic img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-1 { top: 10px; left: 50px; background: #ffc107; }
+        .profile-2 { top: 80px; right: 20px; background: #4caf50; }
+        .profile-3 { bottom: 80px; left: 20px; background: #9c27b0; }
+        .profile-4 { bottom: 10px; right: 50px; background: #ff9800; }
+
+        .floating-element {
+            position: absolute;
+            background: white;
+            border-radius: 25px;
+            padding: 10px 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-1 { top: 100px; right: 100px; animation-delay: 0s; }
+        .floating-2 { bottom: 150px; left: 80px; animation-delay: 1s; }
+        .floating-3 { top: 200px; left: 50px; animation-delay: 2s; }
+
+        .bottom-text {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Section 2 - Luxury Lifestyle */
+        .section-2 {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: #333;
+        }
+
+        .section-2 .section-number {
+            color: #666;
+        }
+
+        .section-2 .main-title {
+            color: #333;
+            font-size: 64px;
+        }
+
+        .luxury-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .luxury-item {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .luxury-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .luxury-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #00bcd4, #0097a7);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        /* Section 3 - Dubai Women */
+        .section-3 {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+        }
+
+        .section-3 .section-number {
+            color: #666;
+        }
+
+        .dubai-content {
+            text-align: center;
+        }
+
+        .dubai-title {
+            font-size: 64px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00bcd4, #e91e63);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .dubai-subtitle {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .dubai-features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+
+        .feature-card p {
+            font-size: 14px;
+        }
+
+        /* Section Simple */
+        .section-simple {
+            background-color: #000;
+            color: #fff;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: background-color 0.5s ease;
+        }
+
+        .section-simple .main-title {
+            transition: all 0.5s ease;
+        }
+
+        .section-simple .section-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .section-simple:hover {
+            background-color: #1a1a1a;
+        }
+
+        .section-simple:hover .main-title {
+            transform: translateY(-20px);
+        }
+
+        .section-simple:hover .section-content {
+            opacity: 1;
+            transform: translateY(0);
+            max-height: 500px; /* Adjust as needed */
+        }
+
+
+        /* Arrow button */
+        .arrow {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 1000;
+            background: #00bcd4;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .arrow:hover {
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 767px) {
+            .section {
+                padding: 40px 20px;
+            }
+
+            .main-title {
+                font-size: 48px;
+            }
+
+            .section-2 .main-title,
+            .dubai-title {
+                font-size: 42px;
+            }
+
+            .circle-container {
+                width: 300px;
+                height: 300px;
+            }
+
+            .main-circle {
+                width: 200px;
+                height: 200px;
+            }
+
+            .luxury-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .dubai-features {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .header {
+                padding: 15px 20px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .section-number {
+                font-size: 32px;
+                top: 20px;
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 36px;
+            }
+
+            .section-2 .main-title,
+            .dubai-title {
+                font-size: 32px;
+            }
+
+            .circle-container {
+                width: 250px;
+                height: 250px;
+            }
+
+            .main-circle {
+                width: 150px;
+                height: 150px;
+            }
+
+            .profile-pic {
+                width: 40px;
+                height: 40px;
+            }
+
+            .profile-pic img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+
+        /* Section 4 - Who!Cares */
+        .section-4 {
+            background: linear-gradient(135deg, #00bcd4, #0097a7);
+            color: white;
+        }
+
+        .section-4 .section-number {
+            color: #666;
+        }
+
+        .section-4 .main-title {
+            color: #333;
+            font-size: 64px;
+        }
+
+        .circle-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 40px 0;
+        }
+
+        .main-circle {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #ff5722, #e91e63);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navigation-controls {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        #start-slideshow {
+            background: #00bcd4;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            height: 50px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #start-slideshow:hover {
+            background-color: #0097a7;
+        }
+  

@@ -3,428 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TenTwenty - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            overflow-x: auto;
-            overflow-y: hidden;
-            background: #f5f5f5;
-            height: 100vh;
-            scroll-behavior: smooth;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.1);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #00bcd4;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #0097a7;
-        }
-
-        .container {
-            display: flex;
-            height: 100vh;
-            width: max-content;
-            min-width: 100vw;
-        }
-
-        .section {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            padding: 60px 40px;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-        }
-
-        .section:hover {
-            transform: translateY(-10px);
-        }
-
-        /* Large devices - show 3 sections */
-        @media (min-width: 1200px) {
-            .section {
-                width: 33.33vw;
-                min-width: 400px;
-            }
-        }
-
-        /* Medium devices - show 2 sections */
-        @media (min-width: 768px) and (max-width: 1199px) {
-            .section {
-                width: 50vw;
-                min-width: 400px;
-            }
-        }
-
-        /* Small devices - show 1 section */
-        @media (max-width: 767px) {
-            .section {
-                width: 100vw;
-                min-width: 100vw;
-            }
-        }
-
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #00bcd4;
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        /* Section 1 - Who!Cares */
-        .section-1 {
-            background: linear-gradient(135deg, #00bcd4, #0097a7);
-            color: white;
-        }
-
-        .section-number {
-            position: absolute;
-            top: 40px;
-            left: 40px;
-            font-size: 48px;
-            font-weight: bold;
-            opacity: 0.7;
-        }
-
-        .main-title {
-            font-size: 72px;
-            font-weight: bold;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .circle-container {
-            position: relative;
-            width: 400px;
-            height: 400px;
-            margin: 40px 0;
-        }
-
-        .main-circle {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(45deg, #ff5722, #e91e63);
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        .profile-pic {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            position: absolute;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        .profile-pic img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .profile-1 { top: 10px; left: 50px; background: #ffc107; }
-        .profile-2 { top: 80px; right: 20px; background: #4caf50; }
-        .profile-3 { bottom: 80px; left: 20px; background: #9c27b0; }
-        .profile-4 { bottom: 10px; right: 50px; background: #ff9800; }
-
-        .floating-element {
-            position: absolute;
-            background: white;
-            border-radius: 25px;
-            padding: 10px 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .floating-1 { top: 100px; right: 100px; animation-delay: 0s; }
-        .floating-2 { bottom: 150px; left: 80px; animation-delay: 1s; }
-        .floating-3 { top: 200px; left: 50px; animation-delay: 2s; }
-
-        .bottom-text {
-            position: absolute;
-            bottom: 40px;
-            left: 40px;
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        /* Section 2 - Luxury Lifestyle */
-        .section-2 {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            color: #333;
-        }
-
-        .section-2 .section-number {
-            color: #666;
-        }
-
-        .section-2 .main-title {
-            color: #333;
-            font-size: 64px;
-        }
-
-        .luxury-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .luxury-item {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .luxury-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .luxury-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #00bcd4, #0097a7);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: white;
-        }
-
-        /* Section 3 - Dubai Women */
-        .section-3 {
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-            color: white;
-        }
-
-        .section-3 .section-number {
-            color: #666;
-        }
-
-        .dubai-content {
-            text-align: center;
-        }
-
-        .dubai-title {
-            font-size: 64px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #00bcd4, #e91e63);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .dubai-subtitle {
-            font-size: 24px;
-            margin-bottom: 40px;
-            opacity: 0.8;
-        }
-
-        .dubai-features {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .feature-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            background: rgba(255,255,255,0.2);
-            transform: scale(1.05);
-        }
-
-        .arrow {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            background: #00bcd4;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .arrow:hover {
-            background: #0097a7;
-            transform: scale(1.1);
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.05); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 767px) {
-            .section {
-                padding: 40px 20px;
-            }
-
-            .main-title {
-                font-size: 48px;
-            }
-
-            .section-2 .main-title,
-            .dubai-title {
-                font-size: 42px;
-            }
-
-            .circle-container {
-                width: 300px;
-                height: 300px;
-            }
-
-            .main-circle {
-                width: 200px;
-                height: 200px;
-            }
-
-            .luxury-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .dubai-features {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .header {
-                padding: 15px 20px;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .section-number {
-                font-size: 32px;
-                top: 20px;
-                left: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-title {
-                font-size: 36px;
-            }
-
-            .section-2 .main-title,
-            .dubai-title {
-                font-size: 32px;
-            }
-
-            .circle-container {
-                width: 250px;
-                height: 250px;
-            }
-
-            .main-circle {
-                width: 150px;
-                height: 150px;
-            }
-
-            .profile-pic {
-                width: 40px;
-                height: 40px;
-            }
-
-            .profile-pic img {
-                width: 30px;
-                height: 30px;
-            }
-        }
-    </style>
+    <title>HorizonFolio - Portfolio Template</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Add GSAP and required plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
 </head>
 <body>
     <div class="header">
-        <div class="logo">tentwenty*</div>
+        <div class="logo">HorizonFolio*</div>
         <div class="menu-toggle">
             <span></span>
             <span></span>
@@ -432,7 +20,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container main-container js-main-container">
         <!-- Section 1: Who!Cares -->
         <div class="section section-1">
             <div class="section-number">01</div>
@@ -512,68 +100,45 @@
                 </div>
             </div>
         </div>
+
+        <!-- Section4: Who!Cares -->
+        <div class="section section-4">
+            <div class="section-number">01</div>
+            <h1 class="main-title">Who!Cares</h1>
+            
+            <div class="circle-container">
+                <div class="main-circle">
+                    <div class="profile-pic profile-1">
+                        <div style="background: #ff5722; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">A</div>
+                    </div>
+                    <div class="profile-pic profile-2">
+                        <div style="background: #4caf50; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">B</div>
+                    </div>
+                    <div class="profile-pic profile-3">
+                        <div style="background: #9c27b0; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">C</div>
+                    </div>
+                    <div class="profile-pic profile-4">
+                        <div style="background: #ff9800; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">D</div>
+                    </div>
+                </div>
+                
+                <div class="floating-element floating-1">💝</div>
+                <div class="floating-element floating-2">🎯</div>
+                <div class="floating-element floating-3">✨</div>
+            </div>
+            
+            <div class="bottom-text">
+                APP & WEBSITE FOR WHO!CARES<br>
+                www.tentwenty.me/cases/whocares
+            </div>
+        </div>
     </div>
 
-    <button class="arrow" onclick="scrollToNext()">→</button>
+    <div class="navigation-controls">
+        <button id="start-slideshow">Start Slideshow</button>
+        <button class="arrow" onclick="scrollToNext()">→</button>
+    </div>
 
-    <script>
-        // Natural horizontal scrolling with mouse wheel
-        document.addEventListener('wheel', (e) => {
-            // Always prevent default vertical scrolling
-            e.preventDefault();
-            
-            // Use deltaY (vertical wheel) to scroll horizontally
-            const scrollAmount = e.deltaY;
-            
-            // Apply the scroll smoothly
-            container.scrollBy({
-                left: scrollAmount,
-                behavior: 'auto' // Use 'auto' for immediate response like normal scrolling
-            });
-        }, { passive: false });
-
-        // Touch/swipe support for mobile
-        let startX = 0;
-        let scrollLeft = 0;
-        const container = document.querySelector('.container');
-
-        container.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].pageX - container.offsetLeft;
-            scrollLeft = container.scrollLeft;
-        });
-
-        container.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            const x = e.touches[0].pageX - container.offsetLeft;
-            const walk = (x - startX) * 2;
-            container.scrollLeft = scrollLeft - walk;
-        });
-
-        // Keyboard navigation for smooth scrolling
-        document.addEventListener('keydown', (e) => {
-            const scrollAmount = window.innerWidth / 3; // Scroll by 1/3 of viewport
-            
-            if (e.key === 'ArrowRight') {
-                container.scrollBy({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
-            } else if (e.key === 'ArrowLeft') {
-                container.scrollBy({
-                    left: -scrollAmount,
-                    behavior: 'smooth'
-                });
-            }
-        });
-
-        // Arrow button for smooth scrolling
-        function scrollToNext() {
-            const scrollAmount = window.innerWidth / 3;
-            container.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-    </script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
