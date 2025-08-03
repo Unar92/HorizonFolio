@@ -1,0 +1,41 @@
+.main {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a, #2d3436);
+  color: white;
+  padding-top: 5rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(78, 205, 196, 0.1),
+    rgba(85, 98, 112, 0.1),
+    rgba(255, 107, 107, 0.1)
+  );
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  z-index: -1;
+}
