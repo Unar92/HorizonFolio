@@ -23,11 +23,6 @@ const Section = ({
 }: SectionProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  
-
-  // Separate useEffect for horizontal scroll to ensure DOM is ready
- 
-
   const handleClick = () => {
     onSectionClick(sectionId);
   };

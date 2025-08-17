@@ -147,20 +147,17 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #fff;
-    z-index: 1002;
-    opacity: 0;
-    visibility: hidden;
+    z-index: 1001;
+    visibility: hidden; /* Controlled by GSAP */
+    display: block;
     overflow-y: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-overflow-scrolling: touch;
 }
 
 .popup-content {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .popup-header {
@@ -280,6 +277,29 @@ body {
 
 .popup-close:after {
     transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.main-container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-stopping {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-scrolling {
+  scroll-behavior: auto;
 }
 
 @media (min-width: 1200px) {
