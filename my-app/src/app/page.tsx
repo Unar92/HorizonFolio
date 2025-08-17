@@ -36,6 +36,13 @@ const sections = [
     title: "Let's Build Something Great",
     imageUrl: 'https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
     imageAlt: 'Contact Us'
+  },
+  {
+    number: '05',
+    sectionId: 'section-5',
+    title: 'Get in Touch',
+    imageUrl: 'https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+    imageAlt: 'Contact Information'
   }
 ];
 

@@ -36,15 +36,23 @@ const SmoothScroll = ({ children, isPaused = false }: SmoothScrollProps) => {
       return;
     }
 
+    const content = document.querySelector('.main-container');
+    if (!content) {
+      return;
+    }
+
     gsap.registerPlugin(ScrollTrigger);
 
     const lenis = new Lenis({
+      wrapper: window,
+      content: content as HTMLElement,
       orientation: 'horizontal',
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 2,
       infinite: false,
+      smoothTouch: true,
     });
 
     lenisRef.current = lenis;
@@ -66,44 +74,62 @@ const SmoothScroll = ({ children, isPaused = false }: SmoothScrollProps) => {
         lenisRef.current.destroy();
         lenisRef.current = null;
       }
-      // Clean up GSAP ticker
-      gsap.ticker.remove((time) => {
-        if (lenisRef.current) {
-          lenisRef.current.raf(time * 1000);
-        }
-      });
+      gsap.ticker.remove(scrollFn);
     };
   }, [isPaused, isMobile]);
 
   useEffect(() => {
+    let isScrolling = false;
+    const scrollTimeout = 1200;
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (isMobile) {
-        // Handle vertical scrolling on mobile
-        const sections = document.querySelectorAll('.main-section');
-        const currentSection = Array.from(sections).findIndex(section => {
-          const rect = section.getBoundingClientRect();
-          return rect.top <= window.innerHeight * 0.3 && rect.bottom >= window.innerHeight * 0.3;
+      if (isScrolling || isMobile || !lenisRef.current) return;
+
+      const sections = document.querySelectorAll('.main-section');
+      if (sections.length === 0) return;
+
+      let minDistance = Infinity;
+      let currentSectionIndex = 0;
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        const distance = Math.abs(rect.left);
+        if (distance < minDistance) {
+          minDistance = distance;
+          currentSectionIndex = index;
+        }
+      });
+
+      const handleScroll = (targetIndex: number) => {
+        if (targetIndex < 0 || targetIndex >= sections.length) return;
+
+        isScrolling = true;
+        const targetSection = sections[targetIndex] as HTMLElement;
+        lenisRef.current?.scrollTo(targetSection, {
+          offset: 0,
+          duration: 1.0,
+          easing: (x) => (x === 1 ? 1 : 1 - Math.pow(2, -10 * x)), // easeOutExpo
         });
 
-        if (e.key === 'ArrowUp' && currentSection > 0) {
-          sections[currentSection - 1].scrollIntoView({ behavior: 'smooth' });
-        } else if (e.key === 'ArrowDown' && currentSection < sections.length - 1) {
-          sections[currentSection + 1].scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+          isScrolling = false;
+        }, scrollTimeout);
+      };
+
+      if (e.key === 'ArrowLeft') {
+        if (currentSectionIndex > 0) {
+          handleScroll(currentSectionIndex - 1);
+        } else {
+          // If at the first section, explicitly scroll to the beginning
+          handleScroll(0);
         }
-      } else if (lenisRef.current) {
-        // Handle horizontal scrolling on desktop
-        const currentScroll = lenisRef.current.progress * document.documentElement.scrollWidth;
-        
-        if (e.key === 'ArrowLeft') {
-          lenisRef.current.scrollTo(currentScroll - window.innerWidth);
-        } else if (e.key === 'ArrowRight') {
-          lenisRef.current.scrollTo(currentScroll + window.innerWidth);
+      } else if (e.key === 'ArrowRight') {
+        if (currentSectionIndex < sections.length - 1) {
+          handleScroll(currentSectionIndex + 1);
         }
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
-
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };

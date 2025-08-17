@@ -54,5 +54,17 @@ export const popupData: Record<string, PopupData> = {
       'Dedicated Support'
     ],
     cta: 'Contact Us Today'
+  },
+  'section-5': {
+    title: 'Get in Touch',
+    bannerImage: 'https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+    mainContent: 'Ready to start your next project? We\'re here to help! Reach out to us at info@innovativecode.co.uk and let\'s discuss how we can bring your ideas to life. Our team is ready to provide expert guidance and create innovative solutions tailored to your needs.',
+    features: [
+      'Email: info@innovativecode.co.uk',
+      'Quick Response Time',
+      'Professional Support',
+      'Custom Solutions'
+    ],
+    cta: 'Send us an Email'
   }
 };

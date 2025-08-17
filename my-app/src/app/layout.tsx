@@ -6,8 +6,8 @@ import Header from "@/components/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "HorizonFolio - Web Development Agency",
-  description: "Professional web development services",
+  title: "InnovativeCode - A Full Stack Agency",
+  description: "A Full Stack Agency",
 };
 
 export default function RootLayout({
