@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@studio-freight/lenis": "^1.0.42",
     "gsap": "^3.13.0",
     "jquery": "^3.7.1",
     "next": "^14.1.0",

@@ -315,17 +315,38 @@ html.lenis {
 }
 
 @media (max-width: 767px) {
+    body {
+        overflow-y: auto;
+    }
+    .main-container {
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: auto;
+    }
     .section {
         width: 100vw;
+        height: 100vh;
         padding: 40px 30px;
         border-right: none;
         border-bottom: 1px solid #e0e0e0;
+        scroll-snap-align: start;
     }
     .main-title {
         font-size: 42px;
     }
-    .section img {
-        width: 80%;
+    .section-image {
+        width: 80% !important;
+        height: auto !important;
+        position: relative;
+        bottom: auto;
+        right: auto;
+        transform: none;
+        opacity: 1;
+        margin-top: 20px;
+    }
+    .section:hover .section-image {
+        transform: none;
     }
     .header {
         padding: 15px 20px;
@@ -335,5 +356,9 @@ html.lenis {
     }
     .popup-header h1 {
         font-size: 36px;
+    }
+    .popup-close {
+        top: 20px;
+        right: 20px;
     }
 }

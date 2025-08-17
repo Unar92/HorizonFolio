@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
@@ -12,9 +12,23 @@ interface SmoothScrollProps {
 
 const SmoothScroll = ({ children, isPaused = false }: SmoothScrollProps) => {
   const lenisRef = useRef<Lenis | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (isPaused) {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isPaused || isMobile) {
       if (lenisRef.current) {
         lenisRef.current.destroy();
         lenisRef.current = null;
@@ -29,7 +43,6 @@ const SmoothScroll = ({ children, isPaused = false }: SmoothScrollProps) => {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
-      smoothTouch: false,
       touchMultiplier: 2,
       infinite: false,
     });
@@ -48,22 +61,11 @@ const SmoothScroll = ({ children, isPaused = false }: SmoothScrollProps) => {
     };
     requestAnimationFrame(scrollFn);
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') {
-        lenis.scrollBy(-window.innerWidth);
-      } else if (e.key === 'ArrowRight') {
-        lenis.scrollBy(window.innerWidth);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
     return () => {
       if (lenisRef.current) {
         lenisRef.current.destroy();
         lenisRef.current = null;
       }
-      window.removeEventListener('keydown', handleKeyDown);
       // Clean up GSAP ticker
       gsap.ticker.remove((time) => {
         if (lenisRef.current) {
@@ -71,7 +73,41 @@ const SmoothScroll = ({ children, isPaused = false }: SmoothScrollProps) => {
         }
       });
     };
-  }, [isPaused]);
+  }, [isPaused, isMobile]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isMobile) {
+        // Handle vertical scrolling on mobile
+        const sections = document.querySelectorAll('.main-section');
+        const currentSection = Array.from(sections).findIndex(section => {
+          const rect = section.getBoundingClientRect();
+          return rect.top <= window.innerHeight * 0.3 && rect.bottom >= window.innerHeight * 0.3;
+        });
+
+        if (e.key === 'ArrowUp' && currentSection > 0) {
+          sections[currentSection - 1].scrollIntoView({ behavior: 'smooth' });
+        } else if (e.key === 'ArrowDown' && currentSection < sections.length - 1) {
+          sections[currentSection + 1].scrollIntoView({ behavior: 'smooth' });
+        }
+      } else if (lenisRef.current) {
+        // Handle horizontal scrolling on desktop
+        const currentScroll = lenisRef.current.progress * document.documentElement.scrollWidth;
+        
+        if (e.key === 'ArrowLeft') {
+          lenisRef.current.scrollTo(currentScroll - window.innerWidth);
+        } else if (e.key === 'ArrowRight') {
+          lenisRef.current.scrollTo(currentScroll + window.innerWidth);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMobile]);
 
   return <>{children}</>;
 };
