@@ -52,7 +52,7 @@ const SmoothScroll = ({ children, isPaused = false }: SmoothScrollProps) => {
       wheelMultiplier: 1,
       touchMultiplier: 2,
       infinite: false,
-      smoothTouch: true,
+      // smoothTouch: true,
     });
 
     lenisRef.current = lenis;
