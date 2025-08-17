@@ -79,59 +79,64 @@ const SmoothScroll = ({ children, isPaused = false }: SmoothScrollProps) => {
   }, [isPaused, isMobile]);
 
   useEffect(() => {
-    let isScrolling = false;
-    const scrollTimeout = 1200;
+    const keyState: { [key: string]: boolean } = {};
+    let animationFrameId: number;
+
+    const scrollLoop = () => {
+      if (isMobile) return;
+
+      let deltaY = 0;
+      if (keyState['ArrowLeft']) {
+        deltaY = -40; // Simulate wheel delta (vertical gesture for horizontal scroll)
+      }
+      if (keyState['ArrowRight']) {
+        deltaY = 40; // Simulate wheel delta
+      }
+
+      if (deltaY !== 0) {
+        // Dispatch a synthetic wheel event to be handled by Lenis
+        const wheelEvent = new WheelEvent('wheel', {
+          deltaX: 0,
+          deltaY: deltaY,
+          bubbles: true,
+        });
+        window.dispatchEvent(wheelEvent);
+      }
+
+      animationFrameId = requestAnimationFrame(scrollLoop);
+    };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (isScrolling || isMobile || !lenisRef.current) return;
+      if (isMobile || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+      e.preventDefault(); // Prevent default browser action for arrow keys
 
-      const sections = document.querySelectorAll('.main-section');
-      if (sections.length === 0) return;
-
-      let minDistance = Infinity;
-      let currentSectionIndex = 0;
-      sections.forEach((section, index) => {
-        const rect = section.getBoundingClientRect();
-        const distance = Math.abs(rect.left);
-        if (distance < minDistance) {
-          minDistance = distance;
-          currentSectionIndex = index;
-        }
-      });
-
-      const handleScroll = (targetIndex: number) => {
-        if (targetIndex < 0 || targetIndex >= sections.length) return;
-
-        isScrolling = true;
-        const targetSection = sections[targetIndex] as HTMLElement;
-        lenisRef.current?.scrollTo(targetSection, {
-          offset: 0,
-          duration: 1.0,
-          easing: (x) => (x === 1 ? 1 : 1 - Math.pow(2, -10 * x)), // easeOutExpo
-        });
-
-        setTimeout(() => {
-          isScrolling = false;
-        }, scrollTimeout);
-      };
-
-      if (e.key === 'ArrowLeft') {
-        if (currentSectionIndex > 0) {
-          handleScroll(currentSectionIndex - 1);
-        } else {
-          // If at the first section, explicitly scroll to the beginning
-          handleScroll(0);
-        }
-      } else if (e.key === 'ArrowRight') {
-        if (currentSectionIndex < sections.length - 1) {
-          handleScroll(currentSectionIndex + 1);
+      if (!keyState[e.key]) {
+        keyState[e.key] = true;
+        // Start the animation loop only when the first arrow key is pressed
+        if (Object.keys(keyState).length === 1) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = requestAnimationFrame(scrollLoop);
         }
       }
     };
 
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (isMobile || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+      
+      delete keyState[e.key];
+      // Stop the animation loop when the last arrow key is released
+      if (Object.keys(keyState).length === 0) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+
     window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+      cancelAnimationFrame(animationFrameId);
     };
   }, [isMobile]);
 
