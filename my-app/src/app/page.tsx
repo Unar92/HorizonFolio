@@ -1,9 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import Section from '@/components/Section';
-import Popup from '@/components/Popup';
-import PopupContent from '@/components/PopupContent';
 import { popupData } from '@/data/popupData';
 import SmoothScroll from '@/components/SmoothScroll';
 import Navigation from '@/components/Navigation';
@@ -47,11 +46,11 @@ const sections = [
 ];
 
 export default function Home() {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedSectionId, setSelectedSectionId] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -67,13 +66,7 @@ export default function Home() {
   }, []);
 
   const handleSectionClick = (sectionId: string) => {
-    setSelectedSectionId(sectionId);
-    setIsPopupOpen(true);
-  };
-
-  const handleCtaClick = () => {
-    // Handle CTA button click
-    console.log('CTA clicked for section:', selectedSectionId);
+    router.push(`/${sectionId}`);
   };
 
   const handleScroll = (direction: 'next' | 'prev') => {
@@ -137,7 +130,7 @@ export default function Home() {
   }, [isMobile, currentSectionIndex]);
 
   return (
-    <SmoothScroll isPaused={isPopupOpen}>
+    <SmoothScroll>
       <main className="js-main-container">
         <div 
           ref={containerRef}
@@ -152,14 +145,6 @@ export default function Home() {
           ))}
         </div>
 
-        <Popup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)}>
-          {selectedSectionId && popupData[selectedSectionId] && (
-            <PopupContent
-              data={popupData[selectedSectionId]}
-              onCtaClick={handleCtaClick}
-            />
-          )}
-        </Popup>
         <Navigation onScroll={handleScroll} />
       </main>
     </SmoothScroll>
