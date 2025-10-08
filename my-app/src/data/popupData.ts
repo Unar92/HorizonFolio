@@ -7,64 +7,52 @@ export interface PopupData {
 }
 
 export const popupData: Record<string, PopupData> = {
-  'section-1': {
-    title: 'Custom Web Development',
+  'about': {
+    title: 'About Innovative Code',
     bannerImage: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-    mainContent: 'We build bespoke websites that are fast, responsive, and tailored to your brand\'s unique needs. Our team of expert developers uses the latest technologies to create stunning digital experiences that captivate your audience and drive results. From corporate sites to creative portfolios, we deliver excellence.',
+    mainContent: 'At Innovative Code, we are passionate about creating exceptional digital experiences that drive business growth. Founded in 2018, our team of expert developers, designers, and digital strategists has been delivering cutting-edge web solutions that combine creativity, technology, and business acumen. We believe in building long-term partnerships with our clients, understanding their unique needs, and delivering solutions that exceed expectations.',
     features: [
-      'Responsive Design',
-      'SEO Optimization',
-      'Custom CMS',
-      'High-Performance'
+      '5+ Years Experience',
+      '100+ Projects Completed',
+      'Expert Team',
+      'Award Winning'
     ],
-    cta: 'Get a Free Consultation'
+    cta: 'Learn More About Us'
   },
-  'section-2': {
-    title: 'E-Commerce Solutions',
+  'services': {
+    title: 'Our Services',
     bannerImage: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-    mainContent: 'From Shopify to custom-built platforms, we create powerful e-commerce websites that drive sales and provide a seamless user experience. We focus on creating intuitive navigation, secure payment gateways, and effective product showcases that convert visitors into loyal customers.',
+    mainContent: 'We offer a comprehensive range of digital services designed to help your business thrive in the modern digital landscape. From custom web development to e-commerce solutions, mobile applications to digital marketing, we provide end-to-end solutions that drive results and deliver exceptional user experiences.',
     features: [
-      'Secure Payments',
-      'Inventory Management',
-      'Customer Accounts',
-      'Analytics Integration'
+      'Web Development',
+      'E-Commerce Solutions',
+      'Mobile Applications',
+      'Digital Marketing'
     ],
-    cta: 'Start Selling Online'
+    cta: 'Explore Our Services'
   },
-  'section-3': {
-    title: 'Our Recent Projects',
+  'projects': {
+    title: 'Our Portfolio',
     bannerImage: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-    mainContent: 'We are proud of the work we do. Take a look at some of our latest projects and see how we\'ve helped our clients succeed online. Each project showcases our commitment to quality, innovation, and client satisfaction. Our portfolio speaks for itself.',
+    mainContent: 'Explore our diverse portfolio of successful projects across various industries. Each project represents our commitment to innovation, quality, and client satisfaction. From startups to enterprise-level solutions, we\'ve helped businesses transform their digital presence and achieve their goals.',
     features: [
-      'Diverse Industries',
-      'Proven Results',
-      'Client Testimonials',
-      'Case Studies'
+      'Web Applications',
+      'E-Commerce Platforms',
+      'Brand Identities',
+      'Mobile Apps'
     ],
-    cta: 'View Our Portfolio'
+    cta: 'View All Projects'
   },
-  'section-4': {
-    title: 'Let\'s Build Something Great',
+  'contact': {
+    title: 'Get In Touch',
     bannerImage: 'https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-    mainContent: 'Have a project in mind? We\'d love to hear from you. Contact us today to discuss your ideas and get a free quote. Our team is ready to collaborate with you to bring your vision to life and create something truly exceptional. Let\'s start the conversation.',
+    mainContent: 'Ready to start your next project? We\'d love to hear from you! Our team is here to help bring your ideas to life. Whether you have a specific project in mind or need consultation on your digital strategy, we\'re ready to collaborate and create something exceptional together.',
     features: [
-      'Free Quote',
-      'Collaborative Process',
-      'Expert Advice',
-      'Dedicated Support'
+      'Free Consultation',
+      'Project Planning',
+      'Expert Guidance',
+      'Ongoing Support'
     ],
-    cta: 'Contact Us Today'
-  },
-  'section-5': {
-    title: 'Get in Touch',
-    bannerImage: 'https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-    mainContent: 'Ready to start your next project? We\'re here to help! Reach out to us at info@innovativecode.co.uk and let\'s discuss how we can bring your ideas to life. Our team is ready to provide expert guidance and create innovative solutions tailored to your needs.',
-    features: [
-      'Email: info@innovativecode.co.uk',
-      'Quick Response Time',
-      'Professional Support',
-      'Custom Solutions'
-    ],
-    cta: 'Send us an Email'
+    cta: 'Start Your Project'
   }
 };

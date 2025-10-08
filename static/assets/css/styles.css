@@ -93,7 +93,7 @@ body {
 }
 
 .section:hover {
-    background-color: #e6563a;
+    background-color: #00adb5;
 }
 
 .section:hover .section-number,
@@ -195,7 +195,7 @@ body {
     content: '✓';
     position: absolute;
     left: 0;
-    color: #e6563a;
+    color: #00adb5;
 }
 
 .popup-footer {
@@ -204,7 +204,7 @@ body {
 }
 
 .cta-button {
-    background: #e6563a;
+    background: #00adb5;
     color: #fff;
     padding: 15px 30px;
     border: none;
@@ -232,7 +232,7 @@ body {
 }
 
 .popup-close:hover {
-    background: #e6563a;
+    background: #00adb5;
 }
 
 .popup-close:before,

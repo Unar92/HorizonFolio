@@ -10,38 +10,31 @@ import Navigation from '@/components/Navigation';
 const sections = [
   {
     number: '01',
-    sectionId: 'section-1',
+    sectionId: 'about',
     title: 'Custom Web Development',
     imageUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
     imageAlt: 'Web Development'
   },
   {
     number: '02',
-    sectionId: 'section-2',
+    sectionId: 'services',
     title: 'E-Commerce Solutions',
     imageUrl: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
     imageAlt: 'E-Commerce'
   },
   {
     number: '03',
-    sectionId: 'section-3',
+    sectionId: 'projects',
     title: 'Our Recent Projects',
     imageUrl: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
     imageAlt: 'Our Projects'
   },
   {
     number: '04',
-    sectionId: 'section-4',
+    sectionId: 'contact',
     title: "Let's Build Something Great",
     imageUrl: 'https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
     imageAlt: 'Contact Us'
-  },
-  {
-    number: '05',
-    sectionId: 'section-5',
-    title: 'Get in Touch',
-    imageUrl: 'https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-    imageAlt: 'Contact Information'
   }
 ];
 
