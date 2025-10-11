@@ -8,9 +8,9 @@ export interface PopupData {
 
 export const popupData: Record<string, PopupData> = {
   'about': {
-    title: 'About Innovative Code',
+    title: 'About Us',
     bannerImage: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-    mainContent: 'At Innovative Code, we are passionate about creating exceptional digital experiences that drive business growth. Founded in 2018, our team of expert developers, designers, and digital strategists has been delivering cutting-edge web solutions that combine creativity, technology, and business acumen. We believe in building long-term partnerships with our clients, understanding their unique needs, and delivering solutions that exceed expectations.',
+    mainContent: 'We are a team of developers and designers who are passionate about creating exceptional digital experiences that drive business growth. ',
     features: [
       '5+ Years Experience',
       '100+ Projects Completed',

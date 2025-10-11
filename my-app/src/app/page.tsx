@@ -11,28 +11,28 @@ const sections = [
   {
     number: '01',
     sectionId: 'about',
-    title: 'Custom Web Development',
+    title: 'About Us',
     imageUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
     imageAlt: 'Web Development'
   },
   {
     number: '02',
     sectionId: 'services',
-    title: 'E-Commerce Solutions',
+    title: 'Our Services',
     imageUrl: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
     imageAlt: 'E-Commerce'
   },
   {
     number: '03',
     sectionId: 'projects',
-    title: 'Our Recent Projects',
+    title: 'Our Portfolio',
     imageUrl: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
     imageAlt: 'Our Projects'
   },
   {
     number: '04',
     sectionId: 'contact',
-    title: "Let's Build Something Great",
+    title: 'Get In Touch',
     imageUrl: 'https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
     imageAlt: 'Contact Us'
   }

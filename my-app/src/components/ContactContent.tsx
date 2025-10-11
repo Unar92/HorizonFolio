@@ -73,12 +73,12 @@ const ContactContent = ({ data, onCtaClick }: ContactContentProps) => {
       content: '+44 (0) 20 1234 5678',
       description: 'Mon-Fri from 9am to 6pm'
     },
-    {
-      icon: '📍',
-      title: 'Office',
-      content: 'London, United Kingdom',
-      description: 'Come say hello at our office'
-    }
+    // {
+    //   icon: '📍',
+    //   title: 'Office',
+    //   content: 'London, United Kingdom',
+    //   description: 'Come say hello at our office'
+    // }
   ];
 
   const faqs = [
@@ -115,7 +115,7 @@ const ContactContent = ({ data, onCtaClick }: ContactContentProps) => {
         </div>
         <div className={styles['hero-content']}>
           <h1>{data.title}</h1>
-          <p>{data.mainContent}</p>
+          <p className='is--width-short'>{data.mainContent}</p>
         </div>
         <div className={styles['scroll-indicator']}>
           <div className={styles['scroll-arrow']}></div>

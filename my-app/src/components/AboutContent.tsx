@@ -46,12 +46,7 @@ const AboutContent = ({ data, onCtaClick }: AboutContentProps) => {
   }, []);
 
   const team = [
-    {
-      name: 'Sarah Johnson',
-      role: 'Creative Director',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=400&q=80',
-      bio: 'Sarah leads our creative vision with 8+ years of experience in digital design and brand strategy.'
-    },
+   
     {
       name: 'Michael Chen',
       role: 'Lead Developer',
@@ -83,11 +78,7 @@ const AboutContent = ({ data, onCtaClick }: AboutContentProps) => {
       title: 'Collaboration',
       description: 'We believe in building strong partnerships with our clients and working together towards success.'
     },
-    {
-      icon: '⭐',
-      title: 'Excellence',
-      description: 'We are committed to delivering high-quality work that exceeds expectations and drives results.'
-    },
+   
     {
       icon: '🚀',
       title: 'Growth',
@@ -117,7 +108,7 @@ const AboutContent = ({ data, onCtaClick }: AboutContentProps) => {
         </div>
         <div className={styles['hero-content']}>
           <h1>{data.title}</h1>
-          <p>{data.mainContent}</p>
+          <p className='is--width-short'>{data.mainContent}</p>
         </div>
         <div className={styles['scroll-indicator']}>
           <div className={styles['scroll-arrow']}></div>
@@ -177,7 +168,7 @@ const AboutContent = ({ data, onCtaClick }: AboutContentProps) => {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Team Section
       <section className={styles['team-section']}>
         <div className={styles.container}>
           <h2>Meet Our Team</h2>
@@ -209,7 +200,7 @@ const AboutContent = ({ data, onCtaClick }: AboutContentProps) => {
             ))}
           </Swiper>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className={styles['cta-section']}>

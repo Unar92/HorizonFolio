@@ -125,7 +125,7 @@ const PortfolioContent = ({ data, onCtaClick }: PortfolioContentProps) => {
         </div>
         <div className={styles['hero-content']}>
           <h1>{data.title}</h1>
-          <p>{data.mainContent}</p>
+          <p className='is--width-short'>{data.mainContent}</p>
         </div>
         <div className={styles['scroll-indicator']}>
           <div className={styles['scroll-arrow']}></div>

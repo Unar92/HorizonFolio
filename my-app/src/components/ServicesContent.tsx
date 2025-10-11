@@ -63,12 +63,6 @@ const ServicesContent = ({ data, onCtaClick }: ServicesContentProps) => {
       title: 'Mobile Applications',
       description: 'Native and cross-platform mobile apps that deliver exceptional user experiences across iOS and Android devices with intuitive design and smooth performance.',
       features: ['React Native', 'Flutter', 'iOS/Android', 'App Store Optimization']
-    },
-    {
-      icon: '🚀',
-      title: 'Digital Marketing',
-      description: 'Comprehensive digital marketing strategies including SEO optimization, social media management, content creation, and data-driven campaigns.',
-      features: ['SEO Optimization', 'Social Media', 'Content Strategy', 'Analytics']
     }
   ];
 
@@ -126,7 +120,7 @@ const ServicesContent = ({ data, onCtaClick }: ServicesContentProps) => {
         </div>
         <div className={styles['hero-content']}>
           <h1>{data.title}</h1>
-          <p>{data.mainContent}</p>
+          <p className='is--width-short'>{data.mainContent}</p>
         </div>
         <div className={styles['scroll-indicator']}>
           <div className={styles['scroll-arrow']}></div>
